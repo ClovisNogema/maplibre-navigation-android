@@ -75,7 +75,7 @@ public class RadioTourNavigationActivity extends AppCompatActivity implements On
     initialize();
     TourExemple te = new TourExemple(getAssets());
     meterPointsManager = new MeterPointsManager();
-    meterPointsManager.addMeters(te.readCSVToFeatureCollection(""));
+    meterPointsManager.addMeters(te.readCSVToFeatureCollection("nancy_spe.csv"));
     mClient = new OkHttpClient();
 
     mHandler.postDelayed(new Runnable() {
@@ -270,14 +270,15 @@ public class RadioTourNavigationActivity extends AppCompatActivity implements On
     Point origin = new Point(Arrays.asList(location.getLatitude(), location.getLongitude()));
 
     RequestBody formBody = new FormBody.Builder()
-            .add("starting_position", new Gson().toJson(origin))
-            //.add("end_position", new Gson().toJson(origin))
-            .add("locations", new Gson().toJson(meterPointsManager.toFeatureCollection(meterPointsManager.meters)))
+            .add("starting_position", location.getLatitude() + "," + location.getLongitude())
+            //.add("end_position", location.getLatitude() + "," + location.getLongitude())
+            .add("points", meterPointsManager.toRequestBody())
             .build();
 
     Request request = new Request.Builder()
             .header("User-Agent", "Modified MapLibre Android Navigation SDK Demo App")
             .url(getString(R.string.routing_url))
+            .header("Api-Key", getString(R.string.api_key))
             .post(formBody)
             .build();
     mClient.newCall(request).enqueue(new Callback() {

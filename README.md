@@ -19,9 +19,15 @@ Add `libandroid-navigation-ui/` to your project files and link it in your `build
 Edit `app/src/main/res/values/developer-config.xml` to add:
 - Your valhalla server address.
 - Your tileserver style address.
-- `<string name="routing_url" translatable="false">your_routing_url</string>`
 
-And set the mapbox_access_token:
+And:
+
+```xml
+<string name="routing_url" translatable="false">your_routing_url</string>
+<string name="api_key" translatable="false">your_api_key</string>
+```
+
+And set the mapbox_access_token to this prevent invalid token error:
 
 ```xml
 <string name="mapbox_access_token" translatable="false">tk.no_token</string>

@@ -78,6 +78,17 @@ public class MeterPointsManager {
         return new FeatureCollection(res);
     }
 
+    public String toRequestBody() {
+        StringBuilder res = new StringBuilder();
+        for (Feature f : meters.values()) {
+            Point p = (Point) f.getGeometry();
+            if (p == null)
+                continue;
+            res.append(p.getLatitude() + "," + p.getLongitude() + ";");
+        }
+        return res.toString();
+    }
+
     private String mapToJson(HashMap<?, Feature> m) {
         return toFeatureCollectionNoDup(m).toJson();
     }

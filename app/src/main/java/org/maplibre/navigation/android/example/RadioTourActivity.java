@@ -96,7 +96,7 @@ public class RadioTourActivity extends AppCompatActivity implements OnMapReadyCa
         binding.mapView.getMapAsync(this);
 
         meterPointsManager = new MeterPointsManager();
-        meterPointsManager.addMeters(tourExemple.readCSVToFeatureCollection(""));
+        meterPointsManager.addMeters(tourExemple.readCSVToFeatureCollection("nancy_spe.csv"));
         meterPointsManager.moveMeter(meterPointsManager.meters.values().iterator().next(), MeterPointsManager.UNREAD, MeterPointsManager.READING);
 
         binding.startRouteButton.setOnClickListener(v -> {
@@ -236,7 +236,6 @@ public class RadioTourActivity extends AppCompatActivity implements OnMapReadyCa
                 //.add("end_position", new Gson().toJson(origin))
                 .build();
 
-
         Request request = new Request.Builder()
                 .header("User-Agent", "Modified MapLibre Android Navigation SDK Demo App")
                 .url(getString(R.string.routing_url))
@@ -304,13 +303,15 @@ public class RadioTourActivity extends AppCompatActivity implements OnMapReadyCa
         Point origin = new Point(Arrays.asList(lastLocation.getLatitude(), lastLocation.getLongitude()));
 
         RequestBody formBody = new FormBody.Builder()
-                .add("starting_position", new Gson().toJson(origin))
+                .add("lang", "fr")
+                .add("starting_position", lastLocation.getLatitude() + "," + lastLocation.getLongitude())
                 //.add("end_position", new Gson().toJson(origin))
-                .add("locations", new Gson().toJson(meterPointsManager.toFeatureCollection(meterPointsManager.meters)))
+                .add("points", meterPointsManager.toRequestBody())
                 .build();
 
         Request request = new Request.Builder()
                 .header("User-Agent", "Modified MapLibre Android Navigation SDK Demo App")
+                .header("Api-Key", getString(R.string.api_key))
                 .url(getString(R.string.routing_url))
                 .post(formBody)
                 .build();
