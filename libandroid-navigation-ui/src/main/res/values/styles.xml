@@ -157,4 +157,11 @@
         <item name="navigationViewMapStyle">@string/navigation_guidance_night</item>
     </style>
 
+    <style name="TestNavigationViewDark" parent="NavigationViewDark">
+        <item name="navigationViewMapStyle">@string/map_style_dark</item>
+    </style>
+
+    <style name="TestNavigationViewLight" parent="NavigationViewLight">
+        <item name="navigationViewMapStyle">@string/map_style_light</item>
+    </style>
 </resources>

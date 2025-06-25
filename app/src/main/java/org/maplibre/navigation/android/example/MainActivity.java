@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements PermissionsListen
             getString(R.string.description_custom_foreground_notification),
             NavigationWithForegroundNotificationActivity.class
         ));
+        list.add(new SampleItem(
+                "Tournée de compteurs",
+                "Itinéraire optimisé - SmartReleve",
+                RadioTourActivity.class
+        ));
         RecyclerView.Adapter adapter = new MainAdapter(list);
         recyclerView.setAdapter(adapter);
 

@@ -2,6 +2,8 @@ package org.maplibre.navigation.android.navigation.ui.v5;
 
 import android.app.Application;
 import android.content.Context;
+
+import org.maplibre.navigation.android.navigation.ui.v5.route.BypassRouteFetcher;
 import org.maplibre.navigation.core.location.Location;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,6 @@ import org.maplibre.navigation.android.navigation.ui.v5.voice.NavigationSpeechPl
 import org.maplibre.navigation.android.navigation.ui.v5.voice.SpeechAnnouncement;
 import org.maplibre.navigation.android.navigation.ui.v5.voice.SpeechPlayer;
 import org.maplibre.navigation.android.navigation.ui.v5.voice.SpeechPlayerProvider;
-import org.maplibre.navigation.android.navigation.ui.v5.route.MapLibreRouteFetcher;
 import org.maplibre.navigation.core.location.engine.LocationEngine;
 import org.maplibre.navigation.core.milestone.BannerInstructionMilestone;
 import org.maplibre.navigation.core.milestone.Milestone;
@@ -229,7 +230,8 @@ public class NavigationViewModel extends AndroidViewModel {
     }
 
     private void initializeRouter() {
-        MapLibreRouteFetcher onlineRouter = new MapLibreRouteFetcher(getApplication());
+        //MapLibreRouteFetcher onlineRouter = new MapLibreRouteFetcher(getApplication());
+        BypassRouteFetcher onlineRouter = new BypassRouteFetcher(getApplication());
         Context applicationContext = getApplication().getApplicationContext();
         ConnectivityStatusProvider connectivityStatus = new ConnectivityStatusProvider(applicationContext);
         router = new NavigationViewRouter(onlineRouter, connectivityStatus, routeEngineListener);

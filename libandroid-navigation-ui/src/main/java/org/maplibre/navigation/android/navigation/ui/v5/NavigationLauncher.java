@@ -1,5 +1,8 @@
 package org.maplibre.navigation.android.navigation.ui.v5;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,7 +47,10 @@ public class NavigationLauncher {
 
     editor.apply();
 
-    Intent navigationActivity = new Intent(context, MapLibreNavigationActivity.class);
+    if (RadioTourNavigationActivity.instance != null)
+      RadioTourNavigationActivity.instance.finish();
+    Intent navigationActivity = new Intent(context, RadioTourNavigationActivity.class);
+    navigationActivity.setFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
     storeInitialMapPosition(options, navigationActivity);
     context.startActivity(navigationActivity);
   }

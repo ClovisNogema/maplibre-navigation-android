@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="routing_url" translatable="false">your_routing_url</string>
+    <string name="map_style_light" translatable="false">dark_tiles_url</string>
+    <string name="map_style_dark" translatable="false">light_tiles_url</string>
+</resources>

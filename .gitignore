@@ -18,3 +18,10 @@ build/
 
 # Kotlin
 .kotlin
+
+# Assets
+app/src/main/assets/*.csv
+app/src/main/assets/*.json
+
+# lib config
+libandroid-navigation-ui/src/main/res/values/config.xml

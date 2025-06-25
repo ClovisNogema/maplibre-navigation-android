@@ -57,6 +57,13 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".RadioTourActivity"
+            android:label="RadioTour">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -3,7 +3,9 @@
 
     <application>
         <activity android:name="org.maplibre.navigation.android.navigation.ui.v5.MapLibreNavigationActivity" />
+        <activity android:name="org.maplibre.navigation.android.navigation.ui.v5.RadioTourNavigationActivity" android:launchMode="singleTop">
 
+        </activity>
         <service
             android:name=".notification.service.NavigationNotificationService"
             android:foregroundServiceType="location" />
